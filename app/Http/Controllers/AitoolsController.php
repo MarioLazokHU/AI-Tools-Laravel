@@ -57,7 +57,8 @@ class AitoolsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $aitools = Aitools::find($id);
+        return view('aitools.show', compact('aitools'));
     }
 
     /**
@@ -65,7 +66,9 @@ class AitoolsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $aitools = Aitools::find($id);
+        $categories = Category::all();
+        return view('aitools.edit', compact('aitools', 'categories'));
     }
 
     /**
@@ -73,7 +76,24 @@ class AitoolsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $hasFreePlan = $request->has('hasFreePlan');
+        if($hasFreePlan){
+            $request->merge(['hasFreePlan' => true]);
+        }
+
+        $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'required|string|min:3',
+            'link' => 'required|string',
+            'hasFreePlan' => 'boolean',
+            'price' => 'nullable|numeric'
+        ]);
+
+        $aitools = Aitools::find($id);
+        $aitools->update($request->all());
+
+        return redirect()->route('aitools.index')->with('success', 'Ai Tool sikeresen frissítve.');
     }
 
     /**
@@ -81,6 +101,9 @@ class AitoolsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $aitools = Aitools::find($id);
+        $aitools->delete();
+
+        return redirect()->route('aitools.index')->with('success', 'Ai Tool sikeresen törölve.');
     }
 }

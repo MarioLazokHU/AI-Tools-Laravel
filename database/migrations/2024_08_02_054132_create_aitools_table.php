@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('link');
             $table->boolean('hasFreePlan')->default(false);
-            $table->decimal('price')->nullable();
+            $table->integer('price')->nullable();
             $table->timestamps();
         });
     }
