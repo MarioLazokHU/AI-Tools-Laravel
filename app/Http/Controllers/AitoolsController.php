@@ -58,7 +58,9 @@ class AitoolsController extends Controller
     public function show(string $id)
     {
         $aitools = Aitools::find($id);
-        return view('aitools.show', compact('aitools'));
+        $blogposts = $aitools->blogposts;
+    
+        return view('aitools.show', compact('aitools', 'blogposts'));
     }
 
     /**

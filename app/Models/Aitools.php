@@ -17,4 +17,10 @@ class Aitools extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function blogposts(){
+
+        return $this->hasMany(Blogposts::class);
+        
+    }
 }
