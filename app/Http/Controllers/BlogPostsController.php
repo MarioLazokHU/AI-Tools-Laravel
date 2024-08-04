@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Blogposts;
 use App\Models\Aitools;
+use App\Models\User;
+use Illuminate\Support\Facades\Cookie;
 
 class BlogPostsController extends Controller
 {
@@ -13,7 +15,7 @@ class BlogPostsController extends Controller
      */
     public function index()
     {
-        $blogposts = Blogposts::all();
+        $blogposts = Blogposts::all()->sortByDesc('created_at');
         return view('blogposts.index', compact('blogposts'));
     }
 
@@ -23,7 +25,8 @@ class BlogPostsController extends Controller
     public function create()
     {   
         $aitools = Aitools::all();
-        return view('blogposts.create', compact('aitools'));
+        $userName = User::find(Cookie::get('user'))->name;
+        return view('blogposts.create', compact('aitools', 'userName'));
     }
 
     /**

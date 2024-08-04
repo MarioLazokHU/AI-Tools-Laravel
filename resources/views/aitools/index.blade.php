@@ -9,12 +9,28 @@
     @endif
     <div class="text-white">
         <ul>
-            @foreach ($aitools as $aitool)
-            <div class="grid grid-cols-4 w-full gap-2 mb-2 items-center">
+            <div class="grid grid-cols-5 border-b w-full gap-2 mb-2 items-center">
                 <div>
-                    <li class="text-2xl font-bold">{{ $aitool->name }}</li>
+                    <li class="text-2xl drop-shadow-lg font-bold">Név</li>
                 </div>
-         
+                <div>
+                    <li class="text-lg drop-shadow-lg font-bold">Kategória</li>
+                </div>
+                <div>
+                    <li class="text-lg drop-shadow-lg font-bold">Megjelenítés</li>
+                </div>
+                <div>
+                    <li class="text-lg drop-shadow-lg font-bold">Műveletek</li>
+                </div>
+            </div>
+            @foreach ($aitools as $aitool)
+            <div class="grid grid-cols-5 w-full gap-2 mb-2 items-center">
+                <div>
+                    <li class="text-2xl drop-shadow-lg font-bold">{{ $aitool->name }} </li>
+                </div>
+                <div>
+                    <li class="text-lg drop-shadow-lg font-bold">{{ $aitool->category->name }}</li>
+                </div>
                 <a class="bg-slate-800 p-3 rounded-md" href="{{route('aitools.show', $aitool->id)}}">Megjelenítés</a>
                 <a class="bg-slate-800 p-3 rounded-md" href="{{route('aitools.edit', $aitool->id)}}">Szerkesztés</a>
                 <form action="{{route('aitools.destroy', $aitool->id)}}" method="post">

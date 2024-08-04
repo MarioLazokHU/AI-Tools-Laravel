@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Aitools;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Laravel\Prompts\SearchPrompt;
 
 class AitoolsController extends Controller
 {
@@ -13,7 +14,7 @@ class AitoolsController extends Controller
      */
     public function index()
     {
-        $aitools = Aitools::all();
+        $aitools = Aitools::with('category')->get()->sortByDesc('created_at');
         return view('aitools.index', compact('aitools'));
     }
 
@@ -58,7 +59,7 @@ class AitoolsController extends Controller
     public function show(string $id)
     {
         $aitools = Aitools::find($id);
-        $blogposts = $aitools->blogposts;
+        $blogposts = $aitools->blogposts->sortByDesc('created_at');
     
         return view('aitools.show', compact('aitools', 'blogposts'));
     }

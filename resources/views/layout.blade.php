@@ -31,15 +31,26 @@
                 <li>
                     <a href="{{ route('blogposts.index') }}">Blog</a>
                 </li>
+                @if(Cookie::get('user'))
+                <li>
+                    <a href="{{ route('users.show') }}">Fiókom</a>
+                </li>
+                @else
+                <li>
+                    <a href="{{ route('users.login') }}">Bejelentkezés</a>
+                </li> 
+                <li>
+                    <a href="{{ route('users.create') }}">Regisztráció</a>
+                </li> 
+                @endif
             </ul>
         </nav>
 
     </header>
     <main
-        class="flex flex-col bg-zinc-600/50 mt-16 text-white p-16 rounded-lg justify-start items-center w-[80dvw] h-[80dvh]">
+        class="flex flex-col bg-zinc-600/50 mt-16 text-white p-16 rounded-lg justify-start items-center w-[80dvw] mb-16 min-h-[80dvh]">
         @yield('content')
     </main>
-    <footer class="mt-10 p-3 text-center bg-slate-300/20 w-full h-10 bottom-0 absolute">Minden jog fentartva: blackboxdevs.hu</footer>
 </body>
 <style>
     textarea {

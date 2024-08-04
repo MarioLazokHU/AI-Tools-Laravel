@@ -14,7 +14,7 @@
             </div>
             <div class="flex flex-col ">
                 <label for="sender_name">Küldő neve:</label>
-                <input type="text" name="sender_name" id="sender_name" required>
+                <input type="text" name="sender_name" readonly="{{$userName ? true : false}}" value="{{$userName ?? ''}}" id="sender_name" required>
             </div>
             <div class="flex flex-col ">
                 <label for="title">Cím:</label>
