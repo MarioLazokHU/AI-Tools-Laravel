@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ai Tools</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="{{asset('logo.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @vite('resources/js/app.js')
 </head>
 
 <body
@@ -25,6 +27,9 @@
                 </li>
                 <li>
                     <a href="{{ route('categories.index') }}">Kategóriák</a>
+                </li>
+                <li>
+                    <a href="{{ route('blogposts.index') }}">Blog</a>
                 </li>
             </ul>
         </nav>

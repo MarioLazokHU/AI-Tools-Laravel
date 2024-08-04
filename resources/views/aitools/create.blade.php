@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <h1 class="text-4xl font-bold mb-10">Ai Toolok</h1>
-    <form action="{{route('aitools.create')}}" method="post">
+    <form action="{{route('aitools.store')}}" method="post">
         @csrf
         <div class="flex text-black flex-col gap-3">
             <label for="name">Név</label>
